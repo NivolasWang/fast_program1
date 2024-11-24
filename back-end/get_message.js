@@ -1,5 +1,6 @@
 const express = require('express')
 const mysql = require('mysql2')
+const path = require('path')
 const router = express.Router()
 const xlsx = require("node-xlsx")
 let fs = require("fs")
@@ -151,7 +152,7 @@ router.get('/excel_download', (req, res) => {
       let temp;
       const list = [
         {
-          name: "sheet", // 工作薄的名称
+          name: "sheet", // 
           data: [
             ["Name", "Phone", "Email", "QQ", "Address", "Favorate"]
           ],
@@ -159,14 +160,15 @@ router.get('/excel_download', (req, res) => {
 
       ];
 
-      for (let i = 0; i < results.length; i++) {  // 外层循环遍历行
+      for (let i = 0; i < results.length; i++) {
 
 
         list[0].data.push([results[i].name, results[i].phone, results[i].email, results[i].qq, results[i].address, results[i].favorate])
       }
 
       const buffer = xlsx.build(list);
-      fs.writeFile("D:\\Codes\\新建文件夹\\back-end\\download.xlsx", buffer, function (err) {
+      let url = path.join(__dirname, "../download.xlsx")
+      fs.writeFile(url, buffer, function (err) {
         if (err) {
           console.log(err, "导出excel失败");
         } else {
@@ -181,7 +183,8 @@ router.get('/excel_download', (req, res) => {
 }),
   router.get('/excel_upload', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
-    let sheets = xlsx.parse('D:\\Codes\\新建文件夹\\back-end\\upload.xlsx');
+    let url = path.join(__dirname, "../upload.xlsx")
+    let sheets = xlsx.parse(url);
     console.log('数据格式为：', sheets);
     let arr = [];
     sheets.forEach((sheet) => {
