@@ -28,7 +28,7 @@
 
 ##导入和导出功能
 ```
-点击导出按键后，会将数据库中的数据导出，通过node-xlsx组件，在back-end文件夹形成download.xlsx文件。
-点击导入按键后，会将back-end文件夹中upload.xlsx的数据导入到数据库中。upload.xlsx文件的列分别为Name	Phone	Email	QQ	Address	Favorate，数据从第二行开始导入
+点击导出按键后，会将数据库中的数据导出，通过node-xlsx组件，在back-end同级目录形成download.xlsx文件。
+点击导入按键后，会将back-end同级目录中的upload.xlsx文件的数据导入到数据库中。upload.xlsx文件的列分别为Name	Phone	Email	QQ	Address	Favorate，数据从第二行开始导入进数据库中
 
 ```
